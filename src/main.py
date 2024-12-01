@@ -1,5 +1,5 @@
-from src.rules_engine import RulesEngine
-from src.mqtt_client import MQTTClient
+from rules_engine import RulesEngine
+from mqtt_client import MQTTClient
 
 if __name__ == "__main__":
   # topic ID
