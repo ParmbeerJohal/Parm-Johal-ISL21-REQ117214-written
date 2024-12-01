@@ -1,4 +1,26 @@
 class RulesEngine:
+  def __isValid(self, family_composition, num_children, in_pay_for_december):
+    """
+    Private method.
+    Validates input data as a security check.
+
+    Args:
+      family_composition (string): string
+      num_children (int): int
+      in_pay_for_december (bool): boolean
+
+      Returns:
+      boolean: True if the input data passes all validation checks.
+    """
+
+    if type(family_composition) != str or (family_composition != "single" and family_composition != "couple"):
+      return False
+    if type(num_children) != int or num_children < 0:
+      return False
+    if type(in_pay_for_december) != bool:
+      return False
+    return True
+  
   def calculate(self, input_data):
     """
     Processes input data and calculates eligibility and supplement amount.
@@ -23,6 +45,10 @@ class RulesEngine:
       "childrenAmount": 0.0,
       "supplementAmount": 0.0
     }
+
+    # Validation checks
+    if not self.__isValid(family_composition, num_children, in_pay_for_december):
+      return output_data
 
     # Check eligibility
     if not in_pay_for_december:
