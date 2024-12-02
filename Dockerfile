@@ -14,8 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ ./src/
 COPY main.py .
 
-# Expose the MQTT default port (optional)
+# Expose the MQTT default port
 EXPOSE 1883
 
-# Use ENTRYPOINT to allow dynamic arguments
+# Using ENTRYPOINT to include topic ID parameter
 ENTRYPOINT ["python", "main.py"]

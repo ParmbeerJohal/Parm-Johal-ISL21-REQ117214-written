@@ -1,5 +1,5 @@
 class RulesEngine:
-  def __isValid(self, family_composition, num_children, in_pay_for_december):
+  def __isValid(self, id, family_composition, num_children, in_pay_for_december):
     """
     Private method.
     Validates input data as a security check.
@@ -12,7 +12,9 @@ class RulesEngine:
       Returns:
       boolean: True if the input data passes all validation checks.
     """
-
+    
+    if not id or id == "":
+      return False
     if type(family_composition) != str or (family_composition != "single" and family_composition != "couple"):
       return False
     if type(num_children) != int or num_children < 0:
@@ -47,7 +49,7 @@ class RulesEngine:
     }
 
     # Validation checks
-    if not self.__isValid(family_composition, num_children, in_pay_for_december):
+    if not self.__isValid(id, family_composition, num_children, in_pay_for_december):
       return output_data
 
     # Check eligibility
