@@ -5,7 +5,8 @@ def test_mqtt_client_message_handling():
   # Test topic ID
   topic_id = "5123fd09-c862-4595-80e5-4b595fbff11c"
 
-  # Mock RulesEngine
+  # Mock RulesEngine. We only care about setting up the return value
+  # since it will be used in mqtt_client.on_message method.
   mock_rules_engine = MagicMock()
   mock_rules_engine.calculate.return_value = {
     "id": "test123",
@@ -35,7 +36,7 @@ def test_mqtt_client_message_handling():
     "familyUnitInPayForDecember": True
   })
 
-  # Assert that the output was published to the correct topic
+  # Assert that the output was published to the correct output topic
   mqtt_client.client.publish.assert_called_once_with(
     f"BRE/calculateWinterSupplementOutput/{topic_id}",
     '{"id": "test123", "isEligible": true, "baseAmount": 60.0, "childrenAmount": 0.0, "supplementAmount": 60.0}'

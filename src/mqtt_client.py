@@ -23,28 +23,28 @@ class MQTTClient:
     self.client = mqtt.Client()
 
   def on_message(self, client, userdata, msg):
-      """
-      Callback for when a message is received.
+    """
+    Callback for when a message is received.
 
-      Args:
-        client: MQTT client instance.
-        userdata: User data.
-        msg: MQTT message object.
-      """
-      try:
-        input_data = json.loads(msg.payload.decode())
-        print(f"Received message: {input_data}")
-        
-        # Process data using the rules engine
-        output_data = self.rules_engine.calculate(input_data)
-        print(f"Processed output: {output_data}")
-        
-        # Publish the result to the output topic
-        topic = f"{self.output_topic}"
-        self.client.publish(topic, json.dumps(output_data))
-        print(f"Published result to topic: {topic}")
-      except Exception as e:
-        print(f"Error processing message: {e}")
+    Args:
+      client: MQTT client instance (not used).
+      userdata: User data (not used).
+      msg: MQTT message object.
+    """
+    try:
+      input_data = json.loads(msg.payload.decode())
+      print(f"Received message: {input_data}")
+      
+      # Process data using the rules engine
+      output_data = self.rules_engine.calculate(input_data)
+      print(f"Processed output: {output_data}")
+      
+      # Publish the result to the output topic
+      topic = f"{self.output_topic}"
+      self.client.publish(topic, json.dumps(output_data))
+      print(f"Published result to topic: {topic}")
+    except Exception as e:
+      print(f"Error processing message: {e}")
 
   def start(self):
     """
@@ -58,3 +58,10 @@ class MQTTClient:
     print(f"Subscribed to topic: {self.input_topic}")
 
     self.client.loop_forever()
+  
+  def stop(self):
+    """Stops the MQTT client gracefully."""
+    print("\nStopping MQTT client...")
+    self.client.loop_stop()  # Stops the loop
+    self.client.disconnect()  # Disconnects from the broker
+    print("MQTT client stopped.")

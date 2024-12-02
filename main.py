@@ -20,7 +20,11 @@ def main():
 
   # Initialize and start the MQTT client
   mqtt_client = MQTTClient(topic_id, rules_engine)
-  mqtt_client.start()
+  try:
+    mqtt_client.start()
+  except KeyboardInterrupt:
+    mqtt_client.stop()
+
 
 if __name__ == "__main__":
   main()
