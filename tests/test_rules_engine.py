@@ -137,7 +137,7 @@ test_data = [
       "id": "5123fd09-c862-4595-80e5-4b595fbff11c",
       "familyComposition": "single",
       "numberOfChildren": 2,
-      "familyUnitInPayForDecember": "True"
+      "familyUnitInPayForDecember": "True" # Invalid value type
     },
     "expected": {
       "id": "5123fd09-c862-4595-80e5-4b595fbff11c",

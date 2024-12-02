@@ -1,7 +1,5 @@
-import pytest
 from unittest.mock import MagicMock
 from src.mqtt_client import MQTTClient
-from src.rules_engine import RulesEngine
 
 def test_mqtt_client_message_handling():
   # Test topic ID
