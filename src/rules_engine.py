@@ -6,15 +6,16 @@ class RulesEngine:
   def __isValid(self, id, family_composition, num_children, in_pay_for_december):
     """
     Private method.
-    Validates input data as a security check.
+    Validates the input data as a security check before processing it.
 
     Args:
-      family_composition (string): string
-      num_children (int): int
-      in_pay_for_december (bool): boolean
+      id (str): Unique identifier for the input data.
+      family_composition (str): Family composition i.e. "single" or "couple"
+      num_children (int): Number of children
+      in_pay_for_december (bool): Family unit in pay of December
 
       Returns:
-      boolean: True if the input data passes all validation checks.
+      bool: True if the input data passes all validation checks.
     """
     
     if not id or id == "":

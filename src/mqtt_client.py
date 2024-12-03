@@ -7,10 +7,10 @@ logger = logging.getLogger(__name__)
 class MQTTClient:
   def __init__(self, topic_id, rules_engine):
     """
-    Initializes the MQTT client.
+    Initializes the config components to be able to run the MQTT client.
 
     Args:
-      topic_id (string): Topic ID to set up the input topic with.
+      topic_id (str): Topic ID to set up the input topic with.
       rules_engine (RulesEngine): Instance of the RulesEngine class.
     """
     
@@ -29,12 +29,12 @@ class MQTTClient:
 
   def on_message(self, client, userdata, msg):
     """
-    Callback for when a message is received.
+    Callback for when a message is received by the subscribed input topic.
 
     Args:
-      client: MQTT client instance (not used).
-      userdata: User data (not used).
-      msg: MQTT message object.
+      client (mqtt.Client): MQTT client instance (not used).
+      userdata (Any): User data (not used).
+      msg (mqtt.MQTTMessage): MQTT message object received by the input topic.
     """
 
     try:

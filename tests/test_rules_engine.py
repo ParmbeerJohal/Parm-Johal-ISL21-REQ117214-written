@@ -1,7 +1,7 @@
 import pytest
 from src.rules_engine import RulesEngine
 
-# Test data for various scenarios
+# Test data for various scenarios When the rules engine receives/provides the data
 test_data = [
   # Not eligible (familyUnitInPayForDecember is False)
   {
@@ -141,6 +141,22 @@ test_data = [
     },
     "expected": {
       "id": "5123fd09-c862-4595-80e5-4b595fbff11c",
+      "isEligible": False,
+      "baseAmount": 0.0,
+      "childrenAmount": 0.0,
+      "supplementAmount": 0.0
+    }
+  },
+  # Validation error on id
+  {
+    "input": {
+      "id": "", # Empty ID
+      "familyComposition": "single",
+      "numberOfChildren": 2,
+      "familyUnitInPayForDecember": "True" # Invalid value type
+    },
+    "expected": {
+      "id": "",
       "isEligible": False,
       "baseAmount": 0.0,
       "childrenAmount": 0.0,
