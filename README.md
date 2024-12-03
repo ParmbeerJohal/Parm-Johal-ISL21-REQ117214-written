@@ -20,11 +20,12 @@ The Winter Supplement Rules Engine is a Python application designed to calculate
 ### Setting Up a Development Environment
 
 #### Prerequisites
-1. **Python 3.13.0+**: Ensure you have Python installed.
-2. **Pip**: Python's package manager.
+1. **Git** Ensure Git is installed. This can be downloaded [here](https://git-scm.com/downloads)
+2. **Python 3.13.0+**: Ensure you have Python installed. This can be downloaded [here](https://www.python.org/downloads/)
+2. **Pip**: Python's package manager. Comes with the Python download
 3. **MQTT Broker**: The application uses the public MQTT broker `test.mosquitto.org`.
-4. **Eclipse Mosquitto (optional)**: An open source message broker that can be used for basic end to end testing to mimic data sent by the winter supplement web application.
-5. **Docker (optional)**: Used for containerizing the application and, in this case, make the setup process easier for running/testing.
+4. **Eclipse Mosquitto (optional)**: An open source message broker that can be used for basic end to end testing to mimic data sent by the winter supplement web application. Download instructions are [here](https://mosquitto.org/download/)
+5. **Docker (optional)**: Used for containerizing the application and, in this case, make the setup process easier for running/testing. Download and instructions can be found [here](https://www.docker.com/get-started/)
 
 #### Steps (with Docker)
 1. Clone the repository:
