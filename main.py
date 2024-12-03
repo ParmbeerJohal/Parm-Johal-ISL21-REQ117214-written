@@ -1,10 +1,30 @@
 import argparse
+import os
+import logging
 from src.rules_engine import RulesEngine
 from src.mqtt_client import MQTTClient
 
+# Dynamically create the log directory and file if they don't exist
+log_dir = "./logs"
+log_file = "app.log"
+os.makedirs(log_dir, exist_ok=True)
+
+# Configure logging
+logging.basicConfig(
+  level=logging.INFO,
+  format="%(asctime)s - %(levelname)s - %(filename)s - %(module)s - %(message)s",
+  handlers=[
+    logging.FileHandler(os.path.join(log_dir, log_file)),
+    logging.StreamHandler()
+  ]
+)
+logger = logging.getLogger(__name__)
+
 def main():
-  # Parse command-line arguments
-  parser = argparse.ArgumentParser(description="Run the Winter Supplement Rules Engine MQTT Client.")
+  logger.info("Starting the rules engine application.")
+
+  # Parse the command-line arguments
+  parser = argparse.ArgumentParser()
   parser.add_argument(
     "--topic-id",
     required=True,
@@ -24,6 +44,8 @@ def main():
     mqtt_client.start()
   except KeyboardInterrupt:
     mqtt_client.stop()
+  except Exception as e:
+    logger.error(f"An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":
